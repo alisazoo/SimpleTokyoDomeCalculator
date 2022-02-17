@@ -1,3 +1,16 @@
 h1{
+    margin-top:0.5em;
     color: darkolivegreen;
+}
+
+nav{
+    margin-bottom: 1.5em;
+}
+
+div.form-group{
+    /*margin-bottom: 0.5em;*/
+}
+
+div.box-footer{
+    margin-top:0.5em;
 }

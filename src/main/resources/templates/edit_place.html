@@ -6,31 +6,32 @@
     <meta charset="UTF-8">
     <title>Tokyo Dome Calculator</title>
     <link th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" rel="stylesheet" >
-<!--    <link rel="stylesheet" type="text/css" href="/static/css/myCss.css"-->
-<!--          th:href="@{/css/myCss.css}">-->
+    <link rel="stylesheet" type="text/css" href="/static/css/myCss.css"
+          th:href="@{/css/myCss.css}">
 
 </head>
 <body>
-<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <!-- Brand -->
-    <a class="navbar-brand" href="#">Tokyo Dome Calculator</a>
 
-    <!-- Toggler/collapsibe Button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Navbar links -->
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/places}">Tokyo Dome Calculator</a>
-            </li>
-        </ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/place_list}">Tokyo Dome Calculator</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"
+                       th:href="@{/place_list}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/alisazoo/SimpleTokyoDomeCalculator">Code on Github</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
-<br>
-<br>
+
 <div class = "container">
     <div class = "row">
         <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">

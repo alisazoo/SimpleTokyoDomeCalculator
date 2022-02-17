@@ -4,31 +4,30 @@
     <meta charset="UTF-8">
     <title>Tokyo Dome Calculator</title>
     <link th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" rel="stylesheet" >
-<!--    <link rel="stylesheet" type="text/css" href="/static/css/myCss.css"-->
-<!--          th:href="@{/css/myCss.css}">-->
+    <link rel="stylesheet" type="text/css" href="/static/css/myCss.css"
+          th:href="@{/css/myCss.css}">
 </head>
 <body>
 
-<!--<nav class="navbar navbar-expand-md bg-dark navbar-dark">-->
-<!--    <a href="#" class="navbar-brand">Tokyo Dome Calculator</a>-->
-
-<!--    <button class="navbar-toggler" type="button"-->
-<!--            data-toggle="collapse"-->
-<!--            data-target=#collapsibleNavbar">-->
-<!--        <span class="navbar-toggler-icon"></span>-->
-<!--    </button>-->
-
-<!--    <div class="navbar-collapse collapse" id="collapsibleNavbar">-->
-<!--        <ul class="navbar-nav">-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" th:href="@{/place_list}">Tokyo Dome Calculator</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" th:href="@{/place_list}">Tokyo Dome Calculator2</a>-->
-<!--            </li>-->
-<!--        </ul>-->
-<!--    </div>-->
-<!--</nav>-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand"
+           th:href="@{/place_list}">Tokyo Dome Calculator</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/alisazoo/SimpleTokyoDomeCalculator">Code on Github</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div class="container">
 
@@ -49,6 +48,7 @@
 <!--                <th>(Width)</th>-->
 <!--                <th>(Length)</th>-->
                 <th>Result</th>
+                <th>Actions</th>
             </tr>
         </thread>
         <tbody>
