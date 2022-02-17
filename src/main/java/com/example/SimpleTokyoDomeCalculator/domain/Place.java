@@ -18,7 +18,7 @@ public class Place {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "area")
+    @Column(name = "area", nullable = false)
     private Double area;
 
     @Column(name = "result")
