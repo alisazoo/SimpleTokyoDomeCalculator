@@ -1,56 +1,42 @@
 package com.example.SimpleTokyoDomeCalculator.domain;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-//@Table(name="place")
-@Table
+@Table(name = "places")
 public class Place {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @SequenceGenerator(
-//            name = "place_sequence",
-//            sequenceName = "place_sequence",
-//            allocationSize = 1
-//    )
-//    @GeneratedValue(
-//            strategy = GenerationType.SEQUENCE,
-//            generator = "place_sequence"
-//    )
     private Long id;
 
-//    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-//    @Column(name="width")
-    private Integer width;
+    @Column(name = "area")
+    private Double area;
 
-//    @Column(name = "length")
-    private Integer length;
+    // Area dimension of Tokyo Dome in km2
+    private Double tokyodome = 0.047;
 
-//    @Column(name = "area")
-    private Integer area;
+    @Column(name = "result")
+    private Double result;
 
     public Place() {
     }
 
-    public Place(String name, Integer width, Integer length, Integer area) {
-        this.name = name;
-        this.width = width;
-        this.length = length;
-        this.area = area;
-    }
-
-    public Place(String name, Integer width, Integer length) {
-        this.name = name;
-        this.width = width;
-        this.length = length;
-    }
-
-    public Place(String name, Integer area) {
+    public Place(String name, Double area) {
         this.name = name;
         this.area = area;
+//        if(result != null)
+//            this.result = result;
+//        else
+            this.result = area / tokyodome;
     }
 
     public Long getId() {
@@ -69,31 +55,24 @@ public class Place {
         this.name = name;
     }
 
-    public Integer getWidth() {
-        return width;
-    }
-
-    public void setWidth(Integer width) {
-        this.width = width;
-    }
-
-    public Integer getLength() {
-        return length;
-    }
-
-    public void setLength(Integer length) {
-        this.length = length;
-    }
-
-    public Integer getArea() {
+    public Double getArea() {
         return area;
     }
 
-    public void setArea(Integer area) {
-        if(area==null && (length != null & width != null))
-            this.area = length * width;
+    public void setArea(Double area) {
+        this.area = area;
+    }
+
+    public Double getResult() {
+        return result;
+    }
+
+    public void setResult(Double result) {
+        //TODO Replace condition with Objects.requireNonNullElseGet
+        if(result != null)
+            this.result = result;
         else
-            this.area = area;
+            this.result = area / tokyodome;
     }
 
     @Override
@@ -116,9 +95,9 @@ public class Place {
         return "Place{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", width=" + width +
-                ", length=" + length +
                 ", area=" + area +
+                ", tokyodome=" + tokyodome +
+                ", result=" + result +
                 '}';
     }
 }

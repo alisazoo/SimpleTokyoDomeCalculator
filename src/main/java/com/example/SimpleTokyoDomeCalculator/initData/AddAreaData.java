@@ -18,10 +18,10 @@ public class AddAreaData implements CommandLineRunner {
     public void run(String... args) throws Exception {
         System.out.println("Initialise data...................");
 
-        Place place = new Place("Park A", 1235);
+        Place place = new Place("Park A", 12.0);
         placeRepository.save(place);
 
-        System.out.println("Number of the place"+ placeRepository.count());
+        System.out.println("Number of the place: "+ placeRepository.count());
 
     }
 }
