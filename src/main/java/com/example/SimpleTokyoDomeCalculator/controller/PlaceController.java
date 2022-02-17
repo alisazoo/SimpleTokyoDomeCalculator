@@ -18,25 +18,28 @@ public class PlaceController {
 
     private PlaceService placeService;
 
-    // Area dimension of Tokyo Dome in km2
-    private Double tokyodome = 0.047;
+    // Area dimension of Tokyo Dome in m2
+    private static int tokyodome = 46755;
 
-    private double calcResult(Place place){
+    public static double calcResult(Place place){
         double area = place.getArea();
         double temp_result = area/tokyodome;
-        BigDecimal bd = new BigDecimal(temp_result).setScale(1, RoundingMode.HALF_UP);
-//        place.setResult(bd.doubleValue());
+        BigDecimal bd = new BigDecimal(temp_result)
+                .setScale(3, RoundingMode.HALF_EVEN);
         return bd.doubleValue();
     }
 
     public PlaceController(PlaceService placeService) {
+
         this.placeService = placeService;
     }
 
-    // Handler method to handle list Places and return mode and view
+    // Handler method to handle list Places
+    // and return mode and view
     @GetMapping("/place_list")
     public String listPlaces(Model model){
-        model.addAttribute("places", placeService.getAllPlaces());
+        model.addAttribute(
+                "places", placeService.getAllPlaces());
         return "place_list";
     }
 
