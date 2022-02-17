@@ -6,8 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 @Entity
 @Table(name = "places")
@@ -32,15 +30,6 @@ public class Place {
     public Place(String name, Double area) {
         this.name = name;
         this.area = area;
-//        if(result != null)
-//            this.result = result;
-//        else
-
-//            this.result = (area / tokyodome);
-
-//        Double temp_result = area/tokyodome;
-//        BigDecimal bd = new BigDecimal(temp_result).setScale(2, RoundingMode.HALF_UP);
-//        this.result = bd.doubleValue();
     }
 
     public Long getId() {
@@ -68,19 +57,11 @@ public class Place {
     }
 
     public Double getResult() {
-//        System.out.println("BigDecimal");
-//        BigDecimal bd = new BigDecimal(result).setScale(2, RoundingMode.HALF_UP);
-//        Double result2 = bd.doubleValue();
-//        System.out.println(result2);
         return result;
     }
 
     public void setResult(Double result) {
-        //TODO Replace condition with Objects.requireNonNullElseGet
-//        if(result != null)
-            this.result = result;
-//        else
-//            this.result = area / tokyodome;
+        this.result = result;
     }
 
     @Override

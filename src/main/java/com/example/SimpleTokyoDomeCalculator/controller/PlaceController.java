@@ -25,7 +25,7 @@ public class PlaceController {
         double area = place.getArea();
         double temp_result = area/tokyodome;
         BigDecimal bd = new BigDecimal(temp_result)
-                .setScale(3, RoundingMode.HALF_EVEN);
+                .setScale(2, RoundingMode.HALF_EVEN);
         return bd.doubleValue();
     }
 
@@ -34,8 +34,7 @@ public class PlaceController {
         this.placeService = placeService;
     }
 
-    // Handler method to handle list Places
-    // and return mode and view
+    // Handler method to handle list Places and return mode and view
     @GetMapping("/place_list")
     public String listPlaces(Model model){
         model.addAttribute(
