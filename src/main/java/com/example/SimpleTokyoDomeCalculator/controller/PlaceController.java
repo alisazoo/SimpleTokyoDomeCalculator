@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 @Controller
@@ -15,6 +17,17 @@ import java.util.List;
 public class PlaceController {
 
     private PlaceService placeService;
+
+    // Area dimension of Tokyo Dome in km2
+    private Double tokyodome = 0.047;
+
+    private double calcResult(Place place){
+        double area = place.getArea();
+        double temp_result = area/tokyodome;
+        BigDecimal bd = new BigDecimal(temp_result).setScale(1, RoundingMode.HALF_UP);
+//        place.setResult(bd.doubleValue());
+        return bd.doubleValue();
+    }
 
     public PlaceController(PlaceService placeService) {
         this.placeService = placeService;
@@ -37,6 +50,7 @@ public class PlaceController {
 
     @PostMapping("/place_list")
     public String savePlace(@ModelAttribute("place") Place place){
+        place.setResult(calcResult(place));
         placeService.savePlace(place);
         return "redirect:/place_list";
     }
@@ -56,6 +70,7 @@ public class PlaceController {
         existingPlace.setId(id);
         existingPlace.setName(place.getName());
         existingPlace.setArea(place.getArea());
+        existingPlace.setResult(calcResult(place));
 
         // Save updated place object
         placeService.updatePlace(existingPlace);

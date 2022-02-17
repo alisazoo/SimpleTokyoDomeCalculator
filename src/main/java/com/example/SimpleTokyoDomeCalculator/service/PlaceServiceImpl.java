@@ -17,27 +17,34 @@ public class PlaceServiceImpl implements PlaceService {
 
     @Override
     public List<Place> getAllPlaces() {
+        System.out.println("placeServiceImpl: getAllPlaces");
         return placeRepository.findAll();
     }
 
     @Override
     public Place savePlace(Place place) {
+        System.out.println("placeServiceImpl: savePlace");
+
         return placeRepository.save(place);
     }
 
     @Override
     public Place getPlaceById(Long id) {
+        System.out.println("placeServiceImpl: getPlaceById");
         // TODO: Optional.get() without isPresent() check
         return placeRepository.findById(id).get();
     }
 
     @Override
     public Place updatePlace(Place place) {
+
+        System.out.println("placeServiceImpl: updatePlace");
         return placeRepository.save(place);
     }
 
     @Override
     public void deletePlaceById(Long id) {
+        System.out.println("placeServiceImpl: deleteByIdPlace");
         placeRepository.deleteById(id);
 
     }

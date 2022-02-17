@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Entity
 @Table(name = "places")
@@ -21,9 +23,6 @@ public class Place {
     @Column(name = "area")
     private Double area;
 
-    // Area dimension of Tokyo Dome in km2
-    private Double tokyodome = 0.047;
-
     @Column(name = "result")
     private Double result;
 
@@ -36,7 +35,12 @@ public class Place {
 //        if(result != null)
 //            this.result = result;
 //        else
-            this.result = area / tokyodome;
+
+//            this.result = (area / tokyodome);
+
+//        Double temp_result = area/tokyodome;
+//        BigDecimal bd = new BigDecimal(temp_result).setScale(2, RoundingMode.HALF_UP);
+//        this.result = bd.doubleValue();
     }
 
     public Long getId() {
@@ -64,15 +68,19 @@ public class Place {
     }
 
     public Double getResult() {
+//        System.out.println("BigDecimal");
+//        BigDecimal bd = new BigDecimal(result).setScale(2, RoundingMode.HALF_UP);
+//        Double result2 = bd.doubleValue();
+//        System.out.println(result2);
         return result;
     }
 
     public void setResult(Double result) {
         //TODO Replace condition with Objects.requireNonNullElseGet
-        if(result != null)
+//        if(result != null)
             this.result = result;
-        else
-            this.result = area / tokyodome;
+//        else
+//            this.result = area / tokyodome;
     }
 
     @Override
@@ -96,7 +104,6 @@ public class Place {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", area=" + area +
-                ", tokyodome=" + tokyodome +
                 ", result=" + result +
                 '}';
     }
