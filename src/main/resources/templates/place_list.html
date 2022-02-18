@@ -18,9 +18,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link active" aria-current="page" href="#">Home</a>-->
+<!--                </li>-->
                 <li class="nav-item">
                     <a class="nav-link" href="https://github.com/alisazoo/SimpleTokyoDomeCalculator">Code on Github</a>
                 </li>
@@ -32,8 +32,8 @@
 <div class="container">
 
     <div class="row">
-        <h1>Tokyo Dome Calculator</h1>
-        <p>東京ドーム（広さ：46755m&sup2;）(約)何個分かが分かります。</p>
+        <h1>Tokyo Dome Calculator: home</h1>
+        <p>東京ドーム(約)何個分かが分かります。</p>
     </div>
     <div class="row">
         <div class="col-lg-3">
@@ -41,20 +41,20 @@
                class="btn btn-primary btn-sm mb-3">新しい場所を追加</a>
         </div>
     </div>
-    <table class="table table-striped table-bordered">
-
+    <table class="table table-striped table-bordered　caption-top">
+        <caption>※東京ドーム一個分の広さは、46755m&sup2;です。</caption>
         <thread class="table-dark">
             <tr>
-                <th>名前</th>
-                <th>面積 (m&sup2;)</th>
-                <th>結果（約〇個分）</th>
-                <th>編集</th>
+                <th scope="col">名前</th>
+                <th scope="col">面積 (m&sup2;)</th>
+                <th scope="col">結果（約〇個分）</th>
+                <th scope="col">編集</th>
             </tr>
         </thread>
         <tbody>
 
             <tr th:each="place : ${places}">
-                <td th:text="${place.name}"></td>
+                <th scope="row" th:text="${place.name}"></th>
                 <td th:text="${place.area}"></td>
                 <td th:text="${place.result}">(unknown)</td>
                 <td>
