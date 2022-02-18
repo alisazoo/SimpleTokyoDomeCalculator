@@ -14,7 +14,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/place_list}">Tokyo Dome Calculator</a>
+        <a class="navbar-brand"
+           th:href="@{/place_list}">Tokyo Dome Calculator</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -42,43 +43,31 @@
                         th:object = "${place}"
                         method="POST">
                     <div class ="form-group">
-                        <label for="validationCustom01" class="form-label">名前</label>
+                        <label class="form-label">名前</label>
                         <input
-                                id="validationCustom01"
+                                class = "form-control"
                                 type = "text"
                                 name = "name"
                                 th:field = "*{name}"
-                                class = "form-control"
                                 placeholder = "場所の名前を入力してください"
                                 th:required="required"
                         />
 
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                        <div class="invalid-feedback">
-                            場所の名前を入力してください。
-                        </div>
                     </div>
 
                     <div class ="form-group">
-                        <label  for="validationCustom02" class="form-label">面積 (m&sup2;)</label>
+                        <label class="form-label">面積 (m&sup2;)</label>
                         <input
-                                id="validationCustom02"
+                                class = "form-control"
                                 type = "number"
                                 name = "area"
+                                step=0.01
+                                min = "0"
                                 th:field = "*{area}"
-                                class = "form-control"
-                                placeholder = "面積を入力してください"
+                                placeholder = "面積（半角数字）を入力してください"
                                 th:required="required"
                         />
 
-                        <div class="valid-feedback">
-                            Looks good!
-                        </div>
-                        <div class="invalid-feedback">
-                            場所の面積を半角数字で入力してください。
-                        </div>
                     </div>
 
                     <div class = "box-footer">

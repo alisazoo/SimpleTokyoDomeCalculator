@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 //@RestController
-//@RequestMapping(path = "/")
+@RequestMapping(path = "")
 public class PlaceController {
 
     @Autowired
@@ -22,12 +22,17 @@ public class PlaceController {
 
     private static int tokyodome = 46755;
 
-    public static double calcResult(Place place){
-        double area = place.getArea();
-        double temp_result = area/tokyodome;
-        BigDecimal bd = new BigDecimal(temp_result)
-                .setScale(2, RoundingMode.HALF_EVEN);
-        return bd.doubleValue();
+    public static Double calcResult(Place place){
+        if(place.getArea() != null && !place.getArea().isNaN()){
+            double area = place.getArea();
+            double temp_result = area / tokyodome;
+            BigDecimal bd = new BigDecimal(temp_result)
+                    .setScale(2, RoundingMode.HALF_EVEN);
+            return bd.doubleValue();
+        } else{
+            place.setResult(null);  // Reset the result
+            return null;
+        }
     }
 
     @GetMapping("/place_list")

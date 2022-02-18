@@ -9,19 +9,6 @@
     <link rel="stylesheet" type="text/css" href="/static/css/myCss.css"
           th:href="@{/css/myCss.css}" >
 
-    <script>
-        function numberValidation(){
-            var n = document.form.numbers.value;
-            if(isNaN(n)){
-                document.getElementById("numberText").innerText = "数字を入力してください";
-                return false;
-            } else {
-                document.getElementById("numberText").innerHTML="Numeric value is: " + n;
-                return true;
-            }
-        }
-    </script>
-
 </head>
 
 <body>
@@ -60,12 +47,12 @@
                         method="POST"
                 >
                     <div class ="form-group">
-                        <label>名前 </label>
+                        <label class="form-label">名前</label>
                         <input
+                                class = "form-control"
                                 type = "text"
                                 name = "name"
                                 th:field = "*{name}"
-                                class = "form-control"
                                 placeholder = "場所を入力してください"
                                 th:required="required"
                         />
@@ -73,16 +60,17 @@
                     </div>
 
                     <div class ="form-group">
-                        <label>面積 (m&sup2;) </label>
+                        <label class="form-label">面積 (m&sup2;) </label>
                         <input
+                                class = "form-control"
                                 type = "number"
                                 name = "area"
+                                step=0.01
+                                min = "0"
                                 th:field = "*{area}"
-                                class = "form-control"
-                                placeholder = "面積を入力してください"
+                                placeholder = "面積（半角数字）を入力してください"
                                 th:required="required"
                         />
-                        <span id=""numberText></span>
 
                     </div>
 

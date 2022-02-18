@@ -6,7 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "places")
@@ -20,6 +22,7 @@ public class Place {
     private String name;
 
     @NotNull(message = "Area dimension cannot be null")
+    @Min(value = 0, message = "Area should not be less than 0")
     private Double area;
 
     private Double result;
