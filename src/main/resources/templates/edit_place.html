@@ -52,8 +52,7 @@
                                 placeholder = "場所の名前を入力してください"
                                 th:required="required"
                         />
-<!--                                oninvalid="this.setCustomValidity('場所の名前を入力してください。')"-->
-<!--                                onvalid="this.setCustomValidity('')"-->
+
                         <div class="valid-feedback">
                             Looks good!
                         </div>
@@ -66,15 +65,13 @@
                         <label  for="validationCustom02" class="form-label">面積 (m&sup2;)</label>
                         <input
                                 id="validationCustom02"
-                                type = "text"
+                                type = "number"
                                 name = "area"
                                 th:field = "*{area}"
                                 class = "form-control"
                                 placeholder = "面積を入力してください"
                                 th:required="required"
                         />
-<!--                                oninvalid="this.setCustomValidity('場所の面積を半角数字で入力してください。')"-->
-<!--                                onvalid="this.setCustomValidity('')"-->
 
                         <div class="valid-feedback">
                             Looks good!

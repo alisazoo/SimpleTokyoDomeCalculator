@@ -3,6 +3,7 @@ package com.example.SimpleTokyoDomeCalculator.controller;
 import com.example.SimpleTokyoDomeCalculator.domain.Place;
 import com.example.SimpleTokyoDomeCalculator.repository.PlaceRepository;
 import com.example.SimpleTokyoDomeCalculator.service.PlaceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +17,9 @@ import java.util.List;
 //@RequestMapping(path = "/")
 public class PlaceController {
 
+    @Autowired
     private PlaceService placeService;
 
-    // Area dimension of Tokyo Dome in m2
     private static int tokyodome = 46755;
 
     public static double calcResult(Place place){
@@ -29,12 +30,6 @@ public class PlaceController {
         return bd.doubleValue();
     }
 
-    public PlaceController(PlaceService placeService) {
-
-        this.placeService = placeService;
-    }
-
-    // Handler method to handle list Places and return mode and view
     @GetMapping("/place_list")
     public String listPlaces(Model model){
         model.addAttribute(
@@ -67,14 +62,13 @@ public class PlaceController {
     public String updatePlace(@PathVariable Long id,
                               @ModelAttribute("place") Place place,
                               Model model){
-        // get place from DB by id
+
         Place existingPlace = placeService.getPlaceById(id);
         existingPlace.setId(id);
         existingPlace.setName(place.getName());
         existingPlace.setArea(place.getArea());
         existingPlace.setResult(calcResult(place));
 
-        // Save updated place object
         placeService.updatePlace(existingPlace);
         return "redirect:/place_list";
     }

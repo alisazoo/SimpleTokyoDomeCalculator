@@ -2,6 +2,7 @@ package com.example.SimpleTokyoDomeCalculator.service;
 
 import com.example.SimpleTokyoDomeCalculator.domain.Place;
 import com.example.SimpleTokyoDomeCalculator.repository.PlaceRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,11 +10,8 @@ import java.util.List;
 @Service
 public class PlaceServiceImpl implements PlaceService {
 
+    @Autowired
     private PlaceRepository placeRepository;
-
-    public PlaceServiceImpl(PlaceRepository placeRepository) {
-        this.placeRepository = placeRepository;
-    }
 
     @Override
     public List<Place> getAllPlaces() {

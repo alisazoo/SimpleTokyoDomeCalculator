@@ -9,6 +9,19 @@
     <link rel="stylesheet" type="text/css" href="/static/css/myCss.css"
           th:href="@{/css/myCss.css}" >
 
+    <script>
+        function numberValidation(){
+            var n = document.form.numbers.value;
+            if(isNaN(n)){
+                document.getElementById("numberText").innerText = "数字を入力してください";
+                return false;
+            } else {
+                document.getElementById("numberText").innerHTML="Numeric value is: " + n;
+                return true;
+            }
+        }
+    </script>
+
 </head>
 
 <body>
@@ -39,7 +52,13 @@
         <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
             <h1 class = "text-center"> Create New Place </h1>
             <div class = "card-body">
-                <form th:action="@{/place_list}" th:object = "${place}" method="POST">
+                <form
+                        name="form"
+                        onsubmit="return numberValidation()"
+                        th:action="@{/place_list}"
+                        th:object = "${place}"
+                        method="POST"
+                >
                     <div class ="form-group">
                         <label>名前 </label>
                         <input
@@ -50,22 +69,21 @@
                                 placeholder = "場所を入力してください"
                                 th:required="required"
                         />
-<!--                        oninvalid="this.setCustomValidity('場所の名前を入力してください。')"-->
-<!--                        onvalid="this.setCustomValidity('')"-->
+
                     </div>
 
                     <div class ="form-group">
                         <label>面積 (m&sup2;) </label>
                         <input
-                                type = "text"
+                                type = "number"
                                 name = "area"
                                 th:field = "*{area}"
                                 class = "form-control"
                                 placeholder = "面積を入力してください"
                                 th:required="required"
                         />
-<!--                        oninvalid="this.setCustomValidity('場所の面積を半角数字で入力してください。')"-->
-<!--                        onvalid="this.setCustomValidity('')"-->
+                        <span id=""numberText></span>
+
                     </div>
 
                     <div class = "box-footer">

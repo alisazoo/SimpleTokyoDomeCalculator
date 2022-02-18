@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "places")
@@ -15,19 +16,19 @@ public class Place {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @NotNull(message = "Name cannot be null")
     private String name;
 
-    @Column(name = "area", nullable = false)
+    @NotNull(message = "Area dimension cannot be null")
     private Double area;
 
-    @Column(name = "result")
     private Double result;
 
     public Place() {
     }
 
-    public Place(String name, Double area) {
+    public Place(@NotNull String name,
+                 Double area) {
         this.name = name;
         this.area = area;
     }
