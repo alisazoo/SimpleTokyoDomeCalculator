@@ -47,8 +47,9 @@
                         method="POST"
                 >
                     <div class ="form-group">
-                        <label class="form-label">名前</label>
+                        <label class="form-label" for = "add_name">名前</label>
                         <input
+                                id = "add_name"
                                 class = "form-control"
                                 type = "text"
                                 name = "name"
@@ -60,12 +61,14 @@
                     </div>
 
                     <div class ="form-group">
-                        <label class="form-label">面積 (m&sup2;) </label>
+                        <label class="form-label" for = "add_area">面積
+                            (m&sup2;) </label>
                         <input
+                                id = "add_area"
                                 class = "form-control"
                                 type = "number"
                                 name = "area"
-                                step=0.01
+                                step= 0
                                 min = "0"
                                 th:field = "*{area}"
                                 placeholder = "面積（半角数字）を入力してください"

@@ -19,21 +19,7 @@ public class PlaceController {
 
     @Autowired
     private PlaceService placeService;
-
-    private static int tokyodome = 46755;
-
-    public static Double calcResult(Place place){
-        if(place.getArea() != null && !place.getArea().isNaN()){
-            double area = place.getArea();
-            double temp_result = area / tokyodome;
-            BigDecimal bd = new BigDecimal(temp_result)
-                    .setScale(2, RoundingMode.HALF_EVEN);
-            return bd.doubleValue();
-        } else{
-            place.setResult(null);  // Reset the result
-            return null;
-        }
-    }
+    private final static int tokyodome = 46755;
 
     @GetMapping("/place_list")
     public String listPlaces(Model model){
@@ -54,6 +40,7 @@ public class PlaceController {
     public String savePlace(@ModelAttribute("place") Place place){
         place.setResult(calcResult(place));
         placeService.savePlace(place);
+        // TODO Cannot resolve controller URL'/place_list'
         return "redirect:/place_list";
     }
 
@@ -75,13 +62,45 @@ public class PlaceController {
         existingPlace.setResult(calcResult(place));
 
         placeService.updatePlace(existingPlace);
+        // TODO Cannot resolve controller URL'/place_list'
         return "redirect:/place_list";
     }
 
     @GetMapping("/place_list/{id}")
     public String deletePlace(@PathVariable Long id){
         placeService.deletePlaceById(id);
+        // TODO Cannot resolve controller URL'/place_list'
         return "redirect:/place_list";
+    }
+
+    public static Double calcResult(Place place){
+
+        // Check the validity of the input:
+        // whether it is not null or is Integer
+        boolean isValid = false;
+        Integer inputArea = place.getArea();
+        // todo: check whether it is need to check the type
+        if(inputArea != null){
+            isValid = true;
+        }
+
+        if(isValid){
+//            double temp_result = inputArea / tokyodome;
+
+            // use BigDecimal to specify its scale
+            // RoundingMode.HALF_EVEN -> the result would be "the nearest
+            // neighbor"
+            BigDecimal resultInBigDecimal =
+                    new BigDecimal(inputArea / tokyodome)
+                    .setScale(2, RoundingMode.HALF_UP);
+
+            System.out.println("result " + resultInBigDecimal);
+
+            return resultInBigDecimal.doubleValue();
+        } else{
+            place.setResult(null);  // Reset the result
+            return null;
+        }
     }
 
 }
