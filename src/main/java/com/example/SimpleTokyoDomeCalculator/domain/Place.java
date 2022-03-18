@@ -6,9 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "places")
@@ -23,15 +21,18 @@ public class Place {
 
     @NotNull(message = "Area dimension cannot be null")
     @Min(value = 0, message = "Area should not be less than 0")
-    private Double area;
+    private Integer area;
 
+//    @NotNull(message = "The result cannot be null; enter 0 before calculation")
+//    @NotBlank
+//    @Pattern(regexp="d{1,}", message = "The result should be numerical value")
     private Double result;
 
     public Place() {
     }
 
     public Place(@NotNull String name,
-                 Double area) {
+                 Integer area) {
         this.name = name;
         this.area = area;
     }
@@ -52,11 +53,11 @@ public class Place {
         this.name = name;
     }
 
-    public Double getArea() {
+    public Integer getArea() {
         return area;
     }
 
-    public void setArea(Double area) {
+    public void setArea(Integer area) {
         this.area = area;
     }
 
