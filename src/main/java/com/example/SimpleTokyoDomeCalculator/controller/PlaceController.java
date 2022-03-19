@@ -19,6 +19,7 @@ public class PlaceController {
 
     @Autowired
     private PlaceService placeService;
+
     private final static int tokyodome = 46755;
 
     @GetMapping("/place_list")
@@ -85,18 +86,12 @@ public class PlaceController {
         }
 
         if(isValid){
-//            double temp_result = inputArea / tokyodome;
-
-            // use BigDecimal to specify its scale
-            // RoundingMode.HALF_EVEN -> the result would be "the nearest
-            // neighbor"
-            BigDecimal resultInBigDecimal =
-                    new BigDecimal(inputArea / tokyodome)
-                    .setScale(2, RoundingMode.HALF_UP);
-
-            System.out.println("result " + resultInBigDecimal);
-
-            return resultInBigDecimal.doubleValue();
+            // use BigDecimal 小数点第二位まで表示、四捨五入
+            BigDecimal inputAreaBD = new BigDecimal(inputArea);
+            BigDecimal tokyoDomeBD = new BigDecimal(tokyodome);
+            BigDecimal resultBD = inputAreaBD.divide(
+                    tokyoDomeBD, 2, RoundingMode.HALF_EVEN);
+            return resultBD.doubleValue();
         } else{
             place.setResult(null);  // Reset the result
             return null;
