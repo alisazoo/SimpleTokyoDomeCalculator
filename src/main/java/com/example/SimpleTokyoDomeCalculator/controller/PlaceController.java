@@ -13,8 +13,6 @@ import java.math.RoundingMode;
 import java.util.List;
 
 @Controller
-//@RestController
-@RequestMapping(path = "")
 public class PlaceController {
 
     @Autowired
@@ -22,38 +20,33 @@ public class PlaceController {
 
     private final static int tokyodome = 46755;
 
-    @GetMapping("/place_list")
-    public String listPlaces(Model model){
-        model.addAttribute(
-                "places", placeService.getAllPlaces());
-        return "place_list";
+    @GetMapping("/")
+    public String showList(Model model){
+        model.addAttribute("places", placeService.getAllPlaces());
+        return "index";
     }
 
-    @GetMapping("place_list/new")
-    public String createPlaceForm(Model model){
-        // Create Place object to hold Place from data
-        Place place = new Place();
-        model.addAttribute("place", place);
+    @GetMapping("/new")
+    public String addPlace(@ModelAttribute Place place){
         return "create_place";
     }
 
-    @PostMapping("/place_list")
-    public String savePlace(@ModelAttribute("place") Place place){
+    @PostMapping("/")
+    public String savePlace(@ModelAttribute Place place){
         place.setResult(calcResult(place));
         placeService.savePlace(place);
-        // TODO Cannot resolve controller URL'/place_list'
-        return "redirect:/place_list";
+        return "redirect:/";
     }
 
-    @GetMapping("/place_list/edit/{id}")
-    public String editPlaceForm(@PathVariable Long id, Model model){
+    @GetMapping("/edit/{id}")
+    public String editPlace(@PathVariable Long id, Model model){
         model.addAttribute("place", placeService.getPlaceById(id));
         return "edit_place";
     }
 
-    @PostMapping("/place_list/{id}")
+    @PostMapping("/{id}")
     public String updatePlace(@PathVariable Long id,
-                              @ModelAttribute("place") Place place,
+                              @ModelAttribute Place place,
                               Model model){
 
         Place existingPlace = placeService.getPlaceById(id);
@@ -64,14 +57,13 @@ public class PlaceController {
 
         placeService.updatePlace(existingPlace);
         // TODO Cannot resolve controller URL'/place_list'
-        return "redirect:/place_list";
+        return "redirect:/";
     }
 
-    @GetMapping("/place_list/{id}")
+    @GetMapping("/{id}")
     public String deletePlace(@PathVariable Long id){
         placeService.deletePlaceById(id);
-        // TODO Cannot resolve controller URL'/place_list'
-        return "redirect:/place_list";
+        return "redirect:/";
     }
 
     public static Double calcResult(Place place){

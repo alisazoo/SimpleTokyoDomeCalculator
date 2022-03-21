@@ -1,7 +1,7 @@
 
 // temporarily stop updating DB
 
-package com.example.SimpleTokyoDomeCalculator.initData;
+package com.example.SimpleTokyoDomeCalculator.init;
 
 import com.example.SimpleTokyoDomeCalculator.controller.PlaceController;
 import com.example.SimpleTokyoDomeCalculator.domain.Place;
@@ -10,11 +10,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AddAreaData implements CommandLineRunner {
+public class DataLoader implements CommandLineRunner {
 
     private final PlaceRepository placeRepository;
 
-    public AddAreaData(PlaceRepository placeRepository) {
+    public DataLoader(PlaceRepository placeRepository) {
         this.placeRepository = placeRepository;
     }
 

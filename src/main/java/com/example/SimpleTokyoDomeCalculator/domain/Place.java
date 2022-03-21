@@ -1,96 +1,38 @@
 package com.example.SimpleTokyoDomeCalculator.domain;
 
-import javax.persistence.Column;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
+@Getter
+@Setter
 @Entity
-@Table(name = "places")
 public class Place {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "Name cannot be null")
+    @NotNull
     private String name;
 
-    @NotNull(message = "Area dimension cannot be null")
-    @Min(value = 0, message = "Area should not be less than 0")
+    @NotNull
+    @Min(value=0)
     private Integer area;
 
-//    @NotNull(message = "The result cannot be null; enter 0 before calculation")
-//    @NotBlank
-//    @Pattern(regexp="d{1,}", message = "The result should be numerical value")
     private Double result;
 
     public Place() {
     }
 
-    public Place(@NotNull String name,
-                 Integer area) {
+    public Place(String name, Integer area) {
         this.name = name;
         this.area = area;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getArea() {
-        return area;
-    }
-
-    public void setArea(Integer area) {
-        this.area = area;
-    }
-
-    public Double getResult() {
-        return result;
-    }
-
-    public void setResult(Double result) {
-        this.result = result;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Place place = (Place) o;
-
-        return id != null ? id.equals(place.id) : place.id == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
-    }
-
-    @Override
-    public String toString() {
-        return "Place{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", area=" + area +
-                ", result=" + result +
-                '}';
     }
 }

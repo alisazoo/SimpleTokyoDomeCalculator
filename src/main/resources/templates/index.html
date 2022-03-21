@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tokyo Dome Calculator</title>
+    <link th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" rel="stylesheet" >
+    <link rel="stylesheet" type="text/css" href="/static/css/myCss.css"
+          th:href="@{/css/myCss.css}">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand"
+           th:href="@{/}">Tokyo Dome Calculator</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link active" aria-current="page" href="#">Home</a>-->
+                <!--                </li>-->
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/alisazoo/SimpleTokyoDomeCalculator">Code on Github</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="row">
+        <h1>Tokyo Dome Calculator: home</h1>
+        <p>東京ドーム(約)何個分かが分かります。</p>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <a th:href="@{/new}"
+               class="btn btn-primary btn-sm mb-3">新しい場所を追加</a>
+        </div>
+    </div>
+    <table class="table table-striped table-bordered　caption-top">
+        <caption>※東京ドーム一個分の広さは、46755m&sup2;です。</caption>
+        <thread class="table-dark">
+            <tr>
+                <th scope="col">名前</th>
+                <th scope="col">面積 (m&sup2;)</th>
+                <th scope="col">結果（約〇個分）</th>
+                <th scope="col">編集</th>
+            </tr>
+        </thread>
+        <tbody>
+
+        <tr th:each="place : ${places}">
+            <th scope="row" th:text="${place.name}"></th>
+            <td th:text="${place.area}"></td>
+            <td th:text="${place.result}">(unknown)</td>
+            <td>
+                <a th:href="@{/edit/{id}(id=${place.id})}"
+                   class="btn btn-primary">編集</a>
+                <a th:href="@{/{id}(id=${place.id})}"
+                   class="btn btn-danger">削除</a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+<script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
