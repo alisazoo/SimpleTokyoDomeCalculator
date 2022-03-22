@@ -22,7 +22,8 @@ public class PlaceController {
 
     private final static int tokyodome = 46755;
 
-    @GetMapping("/")
+//    @GetMapping(value="/")
+    @RequestMapping(value="/", method=RequestMethod.GET, produces="text/html; charset=utf8")
     public String showList(Model model){
         model.addAttribute("places", placeService.getAllPlaces());
         return "index";
