@@ -6,6 +6,8 @@ import com.example.SimpleTokyoDomeCalculator.service.PlaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -32,7 +34,11 @@ public class PlaceController {
     }
 
     @PostMapping("/")
-    public String savePlace(@ModelAttribute Place place){
+    public String savePlace(@Validated @ModelAttribute Place place,
+                            BindingResult result){
+        if(result.hasErrors()){
+            return "index";
+        }
         place.setResult(calcResult(place));
         placeService.savePlace(place);
         return "redirect:/";

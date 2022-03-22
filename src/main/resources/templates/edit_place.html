@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Tokyo Dome Calculator</title>
-    <link th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" rel="stylesheet" >
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" >
     <link rel="stylesheet" type="text/css" href="/static/css/myCss.css"
           th:href="@{/css/myCss.css}">
 
@@ -21,10 +21,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <!--                <li class="nav-item">-->
-                <!--                    <a class="nav-link active" aria-current="page"-->
-                <!--                       th:href="@{/place_list}">Home</a>-->
-                <!--                </li>-->
                 <li class="nav-item">
                     <a class="nav-link" href="https://github.com/alisazoo/SimpleTokyoDomeCalculator">Code on Github</a>
                 </li>
@@ -36,28 +32,27 @@
 <div class = "container">
     <div class = "row">
         <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-            <h1 class = "text-center"> Update Place </h1>
+            <h1 class = "text-center" th:text="#{update}"></h1>
             <div class = "card-body">
                 <form
                         th:action="@{/{id} (id=${place.id})}"
                         th:object = "${place}"
                         method="POST">
                     <div class ="form-group">
-                        <label class="form-label" for = "edit_name">名前</label>
+                        <label class="form-label" for = "edit_name" th:text="#{name}"></label>
                         <input
                                 id = "edit_name"
                                 class = "form-control"
                                 type = "text"
                                 name = "name"
                                 th:field = "*{name}"
-                                placeholder = "場所の名前を入力してください"
                                 th:required="required"
                         />
 
                     </div>
 
                     <div class ="form-group">
-                        <label class="form-label" for = "edit_area">面積 (m&sup2;)</label>
+                        <label class="form-label" for = "edit_area"><span th:text="#{area}"></span> (m&sup2;)</label>
                         <input
                                 id = "edit_area"
                                 class = "form-control"
@@ -66,15 +61,13 @@
                                 step= 0
                                 min = "0"
                                 th:field = "*{area}"
-                                placeholder = "面積（半角数字）を入力してください"
                                 th:required="required"
                         />
 
                     </div>
 
                     <div class = "box-footer">
-                        <button type="submit" class = "btn btn-primary">
-                            登録
+                        <button type="submit" class = "btn btn-primary" th:text="#{register}">
                         </button>
                     </div>
                 </form>
@@ -84,6 +77,6 @@
     </div>
 </div>
 
-<script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.example.SimpleTokyoDomeCalculator.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ public class Place {
     private String name;
 
     @NotNull
-    @Min(value=0)
+    @Min(value=1)
     private Integer area;
 
     private Double result;
