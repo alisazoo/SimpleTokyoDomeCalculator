@@ -44,7 +44,7 @@
         <thread class="table-dark">
             <tr>
                 <th scope="col" th:text="#{name}"></th>
-                <th scope="col" ><span th:text="#{area}"></span>(m&sup2;)</th>
+                <th scope="col" th:inline="text">[[#{area}]](m&sup2;)</th>
                 <th scope="col" th:text="#{result}"></th>
                 <th scope="col" th:text="#{edit}"></th>
             </tr>

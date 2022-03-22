@@ -47,12 +47,13 @@
                                 name = "name"
                                 th:field = "*{name}"
                                 th:required="required"
+                                th:errorclass="is-invalid"
                         />
-
+                        <div class="invalid-feedback" th:errors="*{name}"></div>
                     </div>
 
                     <div class ="form-group">
-                        <label class="form-label" for = "edit_area"><span th:text="#{area}"></span> (m&sup2;)</label>
+                        <label class="form-label" for = "edit_area" th:inline="text">[[#{area}]] (m&sup2;)</label>
                         <input
                                 id = "edit_area"
                                 class = "form-control"
@@ -62,7 +63,10 @@
                                 min = "0"
                                 th:field = "*{area}"
                                 th:required="required"
+                                th:errorclass="is-invalid"
                         />
+                        <div class="invalid-feedback"
+                             th:errors="*{area}"></div>
 
                     </div>
 
