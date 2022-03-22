@@ -62,7 +62,6 @@ public class PlaceController {
         existingPlace.setResult(calcResult(place));
 
         placeService.updatePlace(existingPlace);
-        // TODO Cannot resolve controller URL'/place_list'
         return "redirect:/";
     }
 
