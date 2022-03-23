@@ -24,7 +24,7 @@ public class Place {
     private String name;
 
     @NotNull
-    @Min(value=1)
+    @Min(value=0)
     private Integer area;
 
     private Double result;
